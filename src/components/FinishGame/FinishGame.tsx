@@ -1,9 +1,9 @@
-import * as playerSelectors from '../../store/players/playerSelectors';
+import * as playersSelectors from '../../store/players/playersSelectors';
 import { useAppSelector } from '../../hooks/redux';
 
 export const FinishGame = () => {
-    const male = useAppSelector(playerSelectors.malePlayer);
-    const female = useAppSelector(playerSelectors.femalePlayer);
+    const male = useAppSelector(playersSelectors.malePlayer);
+    const female = useAppSelector(playersSelectors.femalePlayer);
     const isDraw = male.points === female.points;
     const isMaleWon = male.points > female.points;
     return (

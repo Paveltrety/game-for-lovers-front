@@ -1,29 +1,19 @@
-import * as playerSelectors from '../../store/players/playerSelectors';
-import * as cardaSelectors from '../../store/cards/cardSelectors';
+import * as playerSelectors from '../../store/players/playersSelectors';
 import { Score } from '../Score';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useAppSelector } from '../../hooks/redux';
 import { Game } from '../Game';
 import { FinishGame } from '../FinishGame';
 import styles from './GameArea.module.scss';
-import { useEffect } from 'react';
-import { fetchCards } from '../../store/cards/cardsActions';
+import { useFetchCards } from '../../hooks/useFetchCards';
 
 export const GameArea = () => {
-    const dispatch = useAppDispatch()
-    //const maleLS = JSON.parse(localStorage.getItem('users'))?.
-    const male = useAppSelector(playerSelectors.malePlayer)
+    const { currentCard, isLoading, isError } = useFetchCards();
+    const male = useAppSelector(playerSelectors.malePlayer);
     const female = useAppSelector(playerSelectors.femalePlayer);
-    const currentCard = useAppSelector(cardaSelectors.currentCard);
-    const { isLoading, error } = useAppSelector(
-        cardaSelectors.infoFetchingCards
-    );
-    useEffect(() => {
-        dispatch(fetchCards())
-    }, [])
-    
+
     return (
         <div className={styles.root}>
-            {!isLoading && !error ? (
+            {!isLoading && !isError ? (
                 <>
                     <Score male={male} female={female} />
                     {currentCard ? <Game /> : <FinishGame />}
@@ -31,7 +21,7 @@ export const GameArea = () => {
             ) : (
                 <>
                     {isLoading && <div>Загрузка</div>}
-                    {error && <div>{error}</div>}
+                    {isError && <div>Ошибка емае</div>}
                 </>
             )}
         </div>

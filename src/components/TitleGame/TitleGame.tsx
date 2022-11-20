@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../hooks/redux';
-import * as playerSelectors from '../../store/players/playerSelectors';
+import * as playerSelectors from '../../store/players/playersSelectors';
 import styles from './TitleGame.module.scss';
 
 export const TitleGame = () => {

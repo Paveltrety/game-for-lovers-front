@@ -1,15 +1,7 @@
-import * as ls from 'local-storage';
-
-export type NamesPlayersLS = {
-    male: string;
-    female: string;
-};
-
-//export const getUNamesPlayersLS = () => ls.get<NamesPlayersLS>('users');
+import { LOCAL_STORAGE_NAMES_PLAYERS } from "../constants/player";
 
 export const getUNamesPlayersLS = () => {
-    const namesPlayers = localStorage.getItem('users');
-    console.log(namesPlayers ? JSON.parse(namesPlayers) : 'fwfw', 'namesPlayers');
+    const namesPlayers = localStorage.getItem(LOCAL_STORAGE_NAMES_PLAYERS);
     return namesPlayers
         ? JSON.parse(namesPlayers)
         : {

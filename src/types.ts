@@ -6,6 +6,11 @@ export type Player = {
     points: number;
 };
 
+export type NamesPlayersLS = {
+    male: string;
+    female: string;
+};
+
 export type SetNamesPlayersPayload = {
     male: string;
     female: string;

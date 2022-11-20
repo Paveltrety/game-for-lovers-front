@@ -1,6 +1,8 @@
-import { FC, useMemo } from 'react';
-import { Player } from '../../types';
-import { getUNamesPlayersLS, NamesPlayersLS } from '../../utils/user';
+import { FC, useLayoutEffect, useMemo } from 'react';
+import { useAppDispatch } from '../../hooks/redux';
+import { playersSlice } from '../../store/players/playersReducer';
+import { NamesPlayersLS, Player } from '../../types';
+import { getUNamesPlayersLS } from '../../utils/user';
 
 type ScoreProps = {
     male: Player;
@@ -8,8 +10,23 @@ type ScoreProps = {
 };
 
 export const Score: FC<ScoreProps> = ({ male, female }) => {
-    const playersNamesLS = useMemo<NamesPlayersLS>(() => getUNamesPlayersLS(), []);
-    console.log(playersNamesLS, 'playersNames в компоненте')
+    const dispatch = useAppDispatch();
+    const { setNamesPlayers } = playersSlice.actions;
+    const playersNamesLS = useMemo<NamesPlayersLS>(
+        () => getUNamesPlayersLS(),
+        []
+    );
+
+    useLayoutEffect(() => {
+        if (!male.name && !female.name) {
+            dispatch(
+                setNamesPlayers({
+                    male: playersNamesLS.male,
+                    female: playersNamesLS.female,
+                })
+            );
+        }
+    }, []);
     return (
         <div>
             <div>

@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useAppDispatch } from '../../hooks/redux';
 import { playersSlice } from '../../store/players/playersReducer';
 import styles from './FormPlayers.module.scss';
-import * as ls from "local-storage";
 import { useNavigate } from 'react-router-dom';
+import { LOCAL_STORAGE_NAMES_PLAYERS } from '../../constants/player';
 
 export const FormPlayers = () => {
     const navigate = useNavigate();
@@ -20,7 +20,7 @@ export const FormPlayers = () => {
             female: femaleName,
         };
         dispatch(setNamesPlayers(usersData));
-        localStorage.setItem('users', JSON.stringify(usersData));
+        localStorage.setItem(LOCAL_STORAGE_NAMES_PLAYERS, JSON.stringify(usersData));
         navigate('/game');
     };
 

@@ -1,15 +1,17 @@
+import { cardsAPI } from './services/cardsService';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import playersReducer from './players/playersReducer';
-import cardsReducer from './cards/cardsReducer';
 
 const rootReducer = combineReducers({
     playersReducer,
-    cardsReducer,
+    [cardsAPI.reducerPath]: cardsAPI.reducer,
 });
 
 export const setupStore = () => {
     return configureStore({
         reducer: rootReducer,
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware().concat(cardsAPI.middleware),
     });
 };
 
