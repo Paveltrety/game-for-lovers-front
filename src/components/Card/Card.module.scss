@@ -1,0 +1,21 @@
+.root {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid grey;
+}
+
+.text {
+    font-size: 24px;
+    line-height: 32px;
+}
+
+.buttonWrapper {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+}
+
+.button {
+    font-size: 30px;
+    padding: 10px;
+}
