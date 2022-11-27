@@ -3,7 +3,9 @@ import { useAppSelector } from './redux';
 import * as playerSelectors from '../store/players/playersSelectors';
 
 export const useFetchCards = () => {
-    const { data, isLoading, isError } = cardsAPI.useFetchCardsQuery(null);
+    const gameCategory = useAppSelector(playerSelectors.gameCategory);
+    const { data, isLoading, isError } =
+        cardsAPI.useFetchCardsQuery(gameCategory);
     const counterMove = useAppSelector(playerSelectors.counterMove);
     return {
         data,

@@ -8,3 +8,5 @@ export const nameFemale = (state: RootState) =>
     state.playersReducer.female.name;
 export const counterMove = (state: RootState) =>
     state.playersReducer.counterMove;
+export const gameCategory = (state: RootState) =>
+    state.playersReducer.gameCategory;

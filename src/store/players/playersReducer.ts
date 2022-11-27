@@ -1,11 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Gender, Player, SetNamesPlayersPayload } from '../../types';
+import { GAME_CATEGORY_DEFAULT } from '../../constants/player';
+import { GameCategory, Player, SetGameSettingsPayload, SetNamesPlayersPayload } from '../../types';
 
 type PlayersState = {
     male: Player;
     female: Player;
     isMoveMale: boolean;
     counterMove: number;
+    gameCategory: GameCategory;
 };
 
 const initialState: PlayersState = {
@@ -21,6 +23,7 @@ const initialState: PlayersState = {
     },
     isMoveMale: true,
     counterMove: 0,
+    gameCategory: GAME_CATEGORY_DEFAULT,
 };
 
 export const playersSlice = createSlice({
@@ -30,6 +33,11 @@ export const playersSlice = createSlice({
         setNamesPlayers(state, action: PayloadAction<SetNamesPlayersPayload>) {
             state.male.name = action.payload.male;
             state.female.name = action.payload.female;
+        },
+        setGameSettings(state, action: PayloadAction<SetGameSettingsPayload>) {
+            state.male.name = action.payload.male;
+            state.female.name = action.payload.female;
+            state.gameCategory = action.payload.gameCategory;
         },
         incrementCounterMove(state) {
             state.isMoveMale ? state.male.points++ : state.female.points++;
@@ -41,20 +49,6 @@ export const playersSlice = createSlice({
             state.counterMove++;
         },
     },
-    //extraReducers: {
-    //    [fetchUsers.fulfilled.type]: (state, action: PayloadAction<IUser[]>) => {
-    //        state.isLoading = false;
-    //        state.error = ''
-    //        state.users = action.payload;
-    //    },
-    //    [fetchUsers.pending.type]: (state) => {
-    //        state.isLoading = true;
-    //    },
-    //    [fetchUsers.rejected.type]: (state,  action: PayloadAction<string>) => {
-    //        state.isLoading = false;
-    //        state.error = action.payload
-    //    },
-    //}
 });
 
 export default playersSlice.reducer;

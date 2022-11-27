@@ -3,24 +3,35 @@ import { useAppDispatch } from '../../hooks/redux';
 import { playersSlice } from '../../store/players/playersReducer';
 import styles from './FormPlayers.module.scss';
 import { useNavigate } from 'react-router-dom';
-import { LOCAL_STORAGE_NAMES_PLAYERS } from '../../constants/player';
+import {
+    GAME_CATEGORY_DEFAULT,
+    GAME_CATEGORY_OPTIONS,
+    LOCAL_STORAGE_NAMES_PLAYERS,
+} from '../../constants/player';
+import { GameCategory } from '../../types';
 
 export const FormPlayers = () => {
     const navigate = useNavigate();
 
     const dispatch = useAppDispatch();
-    const { setNamesPlayers } = playersSlice.actions;
+    const { setGameSettings } = playersSlice.actions;
 
     const [maleName, setMaleName] = useState('');
     const [femaleName, setFemaleName] = useState('');
+    const [gameCategory, setGameCategory] = useState<GameCategory>(GAME_CATEGORY_DEFAULT);
+
     const isDisabledButon = !Boolean(maleName.length && femaleName.length);
     const startGame = () => {
-        const usersData = {
+        const gameSettingsData = {
             male: maleName,
             female: femaleName,
+            gameCategory,
         };
-        dispatch(setNamesPlayers(usersData));
-        localStorage.setItem(LOCAL_STORAGE_NAMES_PLAYERS, JSON.stringify(usersData));
+        dispatch(setGameSettings(gameSettingsData));
+        localStorage.setItem(
+            LOCAL_STORAGE_NAMES_PLAYERS,
+            JSON.stringify({ male: maleName, female: femaleName })
+        );
         navigate('/game');
     };
 
@@ -40,6 +51,18 @@ export const FormPlayers = () => {
                         placeholder="Имя девушки"
                         onChange={(e) => setFemaleName(e.target.value)}
                     />
+                    <select
+                        value={gameCategory}
+                        onChange={(event) =>
+                            setGameCategory(event.target.value as GameCategory)
+                        }
+                    >
+                        {GAME_CATEGORY_OPTIONS.map((category) => (
+                            <option key={category.value} value={category.value}>
+                                {category.label}
+                            </option>
+                        ))}
+                    </select>
                 </div>
                 <button
                     className={styles.button}
