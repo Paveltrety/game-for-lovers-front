@@ -19,12 +19,10 @@ export type SetNamesPlayersPayload = {
 export type SetGameSettingsPayload = {
     male: string;
     female: string;
-    gameCategory: GameCategory;
+    gameCategory: string;
 };
 
 export type Card = {
     id: number;
     text: string;
 };
-
-export type GameCategory = 'confides' | 'vulgars';

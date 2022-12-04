@@ -3,6 +3,7 @@ import { useAppDispatch } from '../../hooks/redux';
 import { playersSlice } from '../../store/players/playersReducer';
 import { NamesPlayersLS, Player } from '../../types';
 import { getUNamesPlayersLS } from '../../utils/user';
+import styles from './Score.module.scss';
 
 type ScoreProps = {
     male: Player;
@@ -28,12 +29,12 @@ export const Score: FC<ScoreProps> = ({ male, female }) => {
         }
     }, []);
     return (
-        <div>
-            <div>
+        <div className={styles.root}>
+            <div className={styles.scoreWrapper}>
                 <span>{male.name ?? playersNamesLS.male}: </span>
                 <span>{male.points}</span>
             </div>
-            <div>
+            <div className={styles.scoreWrapper}>
                 <span>{female.name ?? playersNamesLS.female}: </span>
                 <span>{female.points}</span>
             </div>

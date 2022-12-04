@@ -7,5 +7,9 @@ export const TitleGame = () => {
     const nameMale = useAppSelector(playerSelectors.nameMale);
     const nameFemale = useAppSelector(playerSelectors.nameFemale);
 
-    return <div className={styles.root}>Ход игрока: {isMoveMale ? nameMale : nameFemale}</div>;
+    return (
+        <div className={styles.root}>
+            Ход игрока: <b>{isMoveMale ? nameMale : nameFemale} </b>
+        </div>
+    );
 };

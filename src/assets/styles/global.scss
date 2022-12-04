@@ -1,0 +1,57 @@
+@import './typography.scss';
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    font-family: 'Inter', sans-serif;
+    color: #16192C;
+    background-color: #EDF2F7;
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 300;
+}
+
+body {
+    display: flex;
+    min-height: 100%;
+}
+
+#root {
+    min-height: 100%;
+    width: 100%;
+}
+
+h1 {
+    line-height: 1;
+}
+
+ul,
+ol {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+input,
+input:hover,
+input:focus {
+    border: none;
+    outline: 0;
+}
+
+button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+}

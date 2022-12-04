@@ -1,13 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { GAME_CATEGORY_DEFAULT } from '../../constants/player';
-import { GameCategory, Player, SetGameSettingsPayload, SetNamesPlayersPayload } from '../../types';
+import {
+    Player,
+    SetGameSettingsPayload,
+    SetNamesPlayersPayload,
+} from '../../types';
 
 type PlayersState = {
     male: Player;
     female: Player;
     isMoveMale: boolean;
     counterMove: number;
-    gameCategory: GameCategory;
+    gameCategory: string;
 };
 
 const initialState: PlayersState = {
@@ -23,7 +27,7 @@ const initialState: PlayersState = {
     },
     isMoveMale: true,
     counterMove: 0,
-    gameCategory: GAME_CATEGORY_DEFAULT,
+    gameCategory: GAME_CATEGORY_DEFAULT.value,
 };
 
 export const playersSlice = createSlice({
@@ -43,6 +47,9 @@ export const playersSlice = createSlice({
             state.isMoveMale ? state.male.points++ : state.female.points++;
             state.isMoveMale = !state.isMoveMale;
             state.counterMove++;
+        },
+        restartGame() {
+            return initialState;
         },
         skipMove(state) {
             state.isMoveMale = !state.isMoveMale;

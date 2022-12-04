@@ -1,0 +1,17 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid;
+}
+
+.result {
+    font-weight: 700;
+}

@@ -1,12 +1,32 @@
+@import '@/assets/styles/mixins.scss';
+
 .root {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 320px;
+    border-top: 1px solid rgb(0 0 0 / 55%);
+    padding-top: 20px;
 }
 
 .text {
-    font-size: 24px;
-    line-height: 32px;
+    font-size: 32px;
+    line-height: 40px;
+    color: black;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    -moz-hyphenate-limit-chars: 6 3 2; /* not yet supported */
+    -webkit-hyphenate-limit-chars: 6 3 2; /* not yet supported */
+    -ms-hyphenate-limit-chars: 6 3 2;
+    hyphenate-limit-chars: 6 3 2;
+    -ms-hyphenate-limit-lines: 2;
+    -webkit-hyphenate-limit-lines: 2;
+    hyphenate-limit-lines: 2;
+    @include mq(xs) {
+        font-size: 24px;
+    }
 }
 
 .buttonWrapper {
@@ -18,4 +38,5 @@
 .button {
     font-size: 30px;
     padding: 10px;
+    cursor: pointer;
 }

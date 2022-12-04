@@ -12,18 +12,20 @@ export const GameArea = () => {
     const female = useAppSelector(playerSelectors.femalePlayer);
 
     return (
-        <div className={styles.root}>
-            {!isLoading && !isError ? (
-                <>
-                    <Score male={male} female={female} />
-                    {currentCard ? <Game /> : <FinishGame />}
-                </>
-            ) : (
-                <>
-                    {isLoading && <div>Загрузка</div>}
-                    {isError && <div>Ошибка емае</div>}
-                </>
-            )}
+        <div className={styles.rootWrapper}>
+            <div className={styles.root}>
+                {!isLoading && !isError ? (
+                    <>
+                        <Score male={male} female={female} />
+                        {currentCard ? <Game /> : <FinishGame />}
+                    </>
+                ) : (
+                    <>
+                        {isLoading && <div>Загрузка</div>}
+                        {isError && <div>Ошибка емае</div>}
+                    </>
+                )}
+            </div>
         </div>
     );
 };

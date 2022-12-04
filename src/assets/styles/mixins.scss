@@ -1,9 +1,9 @@
-@import './media';
+@import './variables';
 
 @mixin mq($breakpoint) {
     @each $key, $val in $media {
         @if $breakpoint==$key {
-            @media screen and (min-width: $val) {
+            @media screen and (max-width: $val) {
                 @content;
             }
         }

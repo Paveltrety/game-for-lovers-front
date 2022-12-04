@@ -1,14 +1,15 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useAppDispatch } from '../../hooks/redux';
 import { playersSlice } from '../../store/players/playersReducer';
-import styles from './FormPlayers.module.scss';
 import { useNavigate } from 'react-router-dom';
 import {
     GAME_CATEGORY_DEFAULT,
     GAME_CATEGORY_OPTIONS,
     LOCAL_STORAGE_NAMES_PLAYERS,
 } from '../../constants/player';
-import { GameCategory } from '../../types';
+import { Select } from '../../ui/Select';
+import { Option } from '../../ui/Select/Select.types';
+import styles from './FormPlayers.module.scss';
 
 export const FormPlayers = () => {
     const navigate = useNavigate();
@@ -18,14 +19,16 @@ export const FormPlayers = () => {
 
     const [maleName, setMaleName] = useState('');
     const [femaleName, setFemaleName] = useState('');
-    const [gameCategory, setGameCategory] = useState<GameCategory>(GAME_CATEGORY_DEFAULT);
+    const [gameCategory, setGameCategory] = useState<Option>(
+        GAME_CATEGORY_DEFAULT
+    );
 
     const isDisabledButon = !Boolean(maleName.length && femaleName.length);
     const startGame = () => {
         const gameSettingsData = {
             male: maleName,
             female: femaleName,
-            gameCategory,
+            gameCategory: gameCategory.value,
         };
         dispatch(setGameSettings(gameSettingsData));
         localStorage.setItem(
@@ -35,9 +38,18 @@ export const FormPlayers = () => {
         navigate('/game');
     };
 
+    const onChangeGameCategory = useCallback(
+        (option: Option | null) =>
+            setGameCategory(option ?? GAME_CATEGORY_DEFAULT),
+        [setGameCategory]
+    );
+
     return (
         <div className={styles.root}>
             <div className={styles.body}>
+                <span className={styles.title}>
+                    Игра поможет тебе сблизиться с партнером
+                </span>
                 <div className={styles.inputWrapper}>
                     <input
                         className={styles.input}
@@ -51,18 +63,11 @@ export const FormPlayers = () => {
                         placeholder="Имя девушки"
                         onChange={(e) => setFemaleName(e.target.value)}
                     />
-                    <select
+                    <Select
+                        options={GAME_CATEGORY_OPTIONS}
                         value={gameCategory}
-                        onChange={(event) =>
-                            setGameCategory(event.target.value as GameCategory)
-                        }
-                    >
-                        {GAME_CATEGORY_OPTIONS.map((category) => (
-                            <option key={category.value} value={category.value}>
-                                {category.label}
-                            </option>
-                        ))}
-                    </select>
+                        onChange={onChangeGameCategory}
+                    />
                 </div>
                 <button
                     className={styles.button}
