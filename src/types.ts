@@ -26,3 +26,14 @@ export type Card = {
     id: number;
     text: string;
 };
+
+export type FetchCardsResponse = {
+    data: Card[];
+    totalPages: number;
+    currentPage: number;
+};
+
+export type FetchCardsParams = {
+    gameCategory: string;
+    page: number;
+}
