@@ -10,10 +10,11 @@ import {
 import { Select } from '../../ui/Select';
 import { Option } from '../../ui/Select/Select.types';
 import styles from './FormPlayers.module.scss';
+import { playersAPI } from '../../store/services/playersService';
 
 export const FormPlayers = () => {
     const navigate = useNavigate();
-
+    const [addUser, { isLoading }] = playersAPI.useAddNewUserMutation();
     const dispatch = useAppDispatch();
     const { setGameSettings } = playersSlice.actions;
 
@@ -23,8 +24,9 @@ export const FormPlayers = () => {
         GAME_CATEGORY_DEFAULT
     );
 
-    const isDisabledButon = !Boolean(maleName.length && femaleName.length);
-    const startGame = () => {
+    const isDisabledButon = !Boolean(maleName.length && femaleName.length) || isLoading;
+
+    const startGame = async () => {
         const gameSettingsData = {
             male: maleName,
             female: femaleName,
@@ -35,6 +37,7 @@ export const FormPlayers = () => {
             LOCAL_STORAGE_NAMES_PLAYERS,
             JSON.stringify({ male: maleName, female: femaleName })
         );
+        await addUser({ male: maleName, female: femaleName });
         navigate('/game');
     };
 

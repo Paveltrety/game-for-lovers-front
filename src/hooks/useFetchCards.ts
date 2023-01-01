@@ -8,10 +8,11 @@ const LIMIT = 10;
 export const useFetchCards = () => {
     const [page, setPage] = useState(1);
     const gameCategory = useAppSelector(playerSelectors.gameCategory);
-    const { data, isLoading, isError } = cardsAPI.useFetchCardsQuery({
-        gameCategory,
-        page,
-    });
+    const { data, isLoading, isError } =
+        cardsAPI.useFetchCardsQuery({
+            gameCategory,
+            page,
+        });
 
     const counterMove = useAppSelector(playerSelectors.counterMove);
     const isLoadMoreData = useMemo(() => {
