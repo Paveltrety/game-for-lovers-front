@@ -1,25 +1,20 @@
 @import '@/assets/styles/mixins.scss';
 
-.rootWrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100vh;
-}
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 auto;
+  width: 520px;
+  height: 585px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0px 6px 10px rgb(0 0 0 / 25%);
+  padding: 30px;
 
-.root {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    width: 480px;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0px 6px 10px rgb(0 0 0 / 25%);
-    padding: 30px;
-    @include mq(xs) {
-        max-width: 480px;
-        width: unset;
-    }
+  @include mq(s) {
+    max-width: 480px;
+    width: 100%;
+  }
 }

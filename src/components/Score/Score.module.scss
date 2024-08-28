@@ -1,12 +1,21 @@
+@import '@/assets/styles/mixins.scss';
+
 .root {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 25px;
 }
 
 .scoreWrapper {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  font-size: 34px;
+  line-height: 38px;
+
+  @include mq(s) {
+    font-size: 26px;
+    line-height: 30px;
+  }
 }

@@ -1,31 +1,21 @@
-import * as playerSelectors from '../../store/players/playersSelectors';
 import { Score } from '../Score';
 import { useAppSelector } from '../../hooks/redux';
 import { Game } from '../Game';
-import { FinishGame } from '../FinishGame';
 import styles from './GameArea.module.scss';
-import { useFetchCards } from '../../hooks/useFetchCards';
+import { gameInfoSelectors } from '@/store/api/gameInfo';
+import { IPlayer } from '@/store/api/gameInfo/types';
+import { Layout } from '../Layout';
 
 export const GameArea = () => {
-    const { currentCard, isLoading, isError } = useFetchCards();
-    const male = useAppSelector(playerSelectors.malePlayer);
-    const female = useAppSelector(playerSelectors.femalePlayer);
+  const male = useAppSelector(gameInfoSelectors.male) as IPlayer;
+  const female = useAppSelector(gameInfoSelectors.female) as IPlayer;
 
-    return (
-        <div className={styles.rootWrapper}>
-            <div className={styles.root}>
-                {!isLoading && !isError ? (
-                    <>
-                        <Score male={male} female={female} />
-                        {currentCard ? <Game /> : <FinishGame />}
-                    </>
-                ) : (
-                    <>
-                        {isLoading && <div>Загрузка</div>}
-                        {isError && <div>Ошибка емае</div>}
-                    </>
-                )}
-            </div>
-        </div>
-    );
+  return (
+    <Layout>
+      <div className={styles.body}>
+        <Score male={male} female={female} />
+        <Game />
+      </div>
+    </Layout>
+  );
 };

@@ -1,65 +1,56 @@
 @import '@/assets/styles/mixins.scss';
 
-.root {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    max-width: 500px;
-    height: 100vh;
-    padding: 10px;
-}
-
 .body {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: 0px 6px 10px rgb(0 0 0 / 25%);
-    background-color: white;
-    padding: 30px;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 6px 10px rgb(0 0 0 / 25%);
+  background-color: white;
+  padding: 30px;
 }
 
 .title {
-    text-transform: uppercase;
-    color: black;
-    text-align: center;
-    @include mq(xs) {
-        font-size: 18px;
-    }
-    
+  text-transform: uppercase;
+  color: black;
+  text-align: center;
+
+  @include mq(xs) {
+    font-size: 18px;
+  }
 }
 
 .inputWrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    margin-top: 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 35px;
 }
 
 .input {
-    display: block;
-    margin: 0;
-    padding: 15px;
-    font-size: 16px;
-    border-radius: 10px;
-    background-color: #eeeeee;
-    font-weight: 300;
-    &::placeholder {
-        color: #636668;
-    }
-    &:focus {
-        outline: none;
-        box-shadow: 1px 1px 3px rgb(0 0 0 / 25%);
-    }
+  display: block;
+  margin: 0;
+  padding: 15px;
+  font-size: 16px;
+  border-radius: 10px;
+  background-color: #eeeeee;
+  font-weight: 300;
+  &::placeholder {
+    color: #636668;
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 1px 1px 3px rgb(0 0 0 / 25%);
+  }
 }
 
 .button {
-    width: 120px;
-    margin: 0 auto;
-    margin-top: 20px;
-    padding: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-    border: 1px solid;
+  width: 120px;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid;
 }
