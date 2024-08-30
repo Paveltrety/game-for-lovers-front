@@ -1,4 +1,4 @@
-FROM node:alpine as build
+FROM node:22.6.0-alpine as build
 
 COPY package.json package.json
 RUN npm install
