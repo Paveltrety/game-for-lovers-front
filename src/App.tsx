@@ -4,6 +4,8 @@ import { Route, Routes } from 'react-router-dom';
 import { FinishGame } from './components/FinishGame';
 import CheckInfo from './hoc/CheckInfo';
 
+import './axiosConfig';
+
 import './assets/styles/global.scss';
 
 export function App() {
