@@ -1,14 +1,27 @@
-FROM node:22.6.0-alpine as build
+# Используем официальный образ Node.js
+FROM node:18 AS build
 
+# Устанавливаем рабочую директорию
+WORKDIR /usr/src/app
+
+# Копируем package.json и package-lock.json
 COPY package*.json ./
+
+# Устанавливаем зависимости
 RUN npm install
+
+# Копируем остальные файлы и собираем проект
 COPY . .
 RUN npm run build
 
-FROM nginx:stable-alpine
+# Используем Nginx для сервировки статических файлов
+FROM nginx:alpine
 
-COPY --from=build /dist /usr/share/nginx/html
-COPY --from=build nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 3000
+# Копируем собранные файлы в папку Nginx
+COPY --from=build /usr/src/app/dist /usr/share/nginx/html
 
-CMD [ "nginx", "-g", "daemon off;" ]
+# Открываем порт 80
+EXPOSE 80
+
+# Запускаем Nginx
+CMD ["nginx", "-g", "daemon off;"]
